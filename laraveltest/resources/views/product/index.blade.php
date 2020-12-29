@@ -5,14 +5,13 @@
 </head>
 <body>
 
-	<h1>Welcome home</h1>
+	<h1>Product</h1>
 	<a href="/create">Create New User</a> |
-	<a href="/userlist">View User List</a> |
+	<a href="/productlist">View product List</a> |
 	<a href="/logout">logout</a>
+	
+	<br>
+	<br>
 
-	<br>
-	<br>
-	ID: {{$id}} <br>
-	Name: {{$name}}
 </body>
 </html>

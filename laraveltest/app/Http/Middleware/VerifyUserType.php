@@ -15,8 +15,9 @@ class VerifyUserType
      */
     public function handle($request, Closure $next)
     {
-        if($request->session()->get('username') != "admin"){
-    		return $next($request);
+        if($request->session()->get('username') == "admin"){
+            return $next($request);
+            
     	}else{
     		return redirect('/home');
     	}

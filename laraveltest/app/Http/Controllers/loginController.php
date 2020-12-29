@@ -17,13 +17,19 @@ class loginController extends Controller
 		
        
 			if(count($user) > 0){
-    		$req->session()->put('username', $req->username);
-            $req->session()->put('type', $req->username);
-    		return redirect('/home');
-    	}else{
+				$req->session()->put('username', $req->username);
+						if($req->session()->get('username') == "admin"){
+									return redirect()->route('home.index');
+						}
+								else{
+									return redirect()->route('product.index');
+						}
+								}
+
+		else{
     		$req->session()->flash('msg', 'invalid username/password');
     		return redirect('/login');
-    		//return view('login.index');
+    		
     	}
 
     }

@@ -73,6 +73,13 @@ class homeController extends Controller
     }
 
     public function update($id, Request $req){
+        $validation = Validator::make($req->all(), [
+            'username' => 'required|min:3',
+            'password'=> 'required',
+            'empname' => 'required',
+            'contactno' => 'required',
+
+        ]);
         $user = user::find($id); 
         $user->username     = $req->username;
         $user->password     = $req->password;
@@ -81,7 +88,9 @@ class homeController extends Controller
         
         $user->save();
 
-        return redirect()->route('home.userlist');
+        return redirect()
+        ->route('home.userlist')
+        ->$with('errors',$validation->errors());
     }
 
     public function delete($id){
@@ -98,13 +107,4 @@ class homeController extends Controller
 
 
 
-    private function getUserlist(){
-        return [
-            ['id'=> 1, 'name'=>'xyz', 'email'=>'xyz@aiub.edu', 'cgpa'=>4],
-            ['id'=> 2, 'name'=>'abc', 'email'=>'abc@aiub.edu', 'cgpa'=>3],
-            ['id'=> 3, 'name'=>'asd', 'email'=>'asd@aiub.edu', 'cgpa'=>3.5],
-            ['id'=> 4, 'name'=>'pqr', 'email'=>'pqr@aiub.edu', 'cgpa'=>2.4],
-            ['id'=> 5, 'name'=>'alamin', 'email'=>'alamin@aiub.edu', 'cgpa'=>1.2]
-        ];
-    }
 }
